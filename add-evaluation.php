@@ -2,7 +2,7 @@
   require_once("dbconn.php");
   $db=new db();
   $db->Connect();
-  session_start();	
+  session_start();  
 
       $position=$_SESSION['position'];
     if(!($position=='QA')){
@@ -10,8 +10,8 @@
   }
     
    $evaluation=$_POST['textEvaluation'];    
-	 $dbtable=$_POST['hiddenExhibit'];
-	 $tableName=$_POST['tablename'];
+   $dbtable=$_POST['hiddenExhibit'];
+   $tableName=$_POST['tablename'];
    $page=$_SESSION['page'];
    $s=$_POST['hiddenStandard'];
 
@@ -62,7 +62,7 @@
                 $ret=mysql_query($SQL);
 
 
-	$file = fopen("l2_$evaluation-$dbtable-$s.php","w+");    
+  $file = fopen("l2_$evaluation-$dbtable-$s.php","w+");    
     fwrite($file, '<?php
   require_once("header.php");
   require_once("dbconn.php");
@@ -133,7 +133,7 @@ else if($position==\'HRD\'){
       </h1>
       
       <ol class="breadcrumb">
-      <?php echo "Standards: <a href=\'standards.php\'>".$_GET[\'standards\']."</a>>Options: <a href=\'qa-crud.php?standards=".$_GET[\'standards\']."\'>Exhibits</a>>Category: <a href=\'add-".$dbtable."-".$_GET[\'standards\'].".php?exhibits=".$dbtable."&standards=".$_GET[\'standards\']."\'>".$dbtable."</a><strong>>Sub-Category: <a href=\'l2_".$column."-".$dbtable."-".$_GET[\'standards\'].".php?ename=".$column."&standards=".$_GET[\'standards\']."&exhibits=".$dbtable."\'>".$column."</a></strong>"; 
+      <?php echo "Standards: <a href=\'standards.php\'>".$_GET[\'standards\']."</a>>Options: <a href=\'qa-crud.php?standards=".$_GET[\'standards\']."\'>Exhibits</a>>Category: <a href=\'add-".$dbtable."-".$_GET[\'standards\'].".php?exhibits=".$_GET[\'exhibits\']."&standards=".$_GET[\'standards\']."\'>".$dbtable."</a><strong>>Sub-Category: <a href=\'l2_".$column."-".$dbtable."-".$_GET[\'standards\'].".php?ename=".$column."&standards=".$_GET[\'standards\']."&exhibits=".$$_GET[\'exhibits\']."\'>".$column."</a></strong>"; 
           ?>
         </ol>
     
@@ -321,7 +321,7 @@ else if($position==\'HRD\'){
         
       </h1>
       <ol class="breadcrumb">
-      <?php echo "Standards: <a href=\'view-standards.php\'>".$_GET[\'standards\']."</a>>Options: <a href=\'exhibits.php?standards=".$_GET[\'standards\']."\'>Exhibits</a>>Category: <a href=\'".$dbtable."-".$_GET[\'standards\'].".php?exhibits=".$dbtable."&standards=".$_GET[\'standards\']."\'>".$dbtable."</a><strong>>Sub-Category: <a href=\'".$column."-".$dbtable."-".$_GET[\'standards\'].".php?ename=".$column."&standards=".$_GET[\'standards\']."&exhibits=".$dbtable."\'>".$column."</a></strong>"; 
+      <?php echo "Standards: <a href=\'view-standards.php\'>".$_GET[\'standards\']."</a>>Options: <a href=\'exhibits.php?standards=".$_GET[\'standards\']."\'>Exhibits</a>>Category: <a href=\'".$_GET[\'exhibits\']."-".$_GET[\'standards\'].".php?exhibits=".$_GET[\'exhibits\']."&standards=".$_GET[\'standards\']."\'>".$$_GET[\'exhibits\']."</a><strong>>Sub-Category: <a href=\'".$column."-".$dbtable."-".$_GET[\'standards\'].".php?ename=".$column."&standards=".$_GET[\'standards\']."&exhibits=".$dbtable."\'>".$column."</a></strong>"; 
           ?>
         </ol>
     
@@ -420,40 +420,40 @@ else if($position==\'HRD\'){
 <script>
     
     var file = {
-	maxlength:20, 
-		
-	convert:function(){
-		// Convert all file type inputs.
-		$(\'input[type=file]\').each(function(){
-			$(this).wrap(\'<div class=\"file\" />\');
-			$(this).parent().prepend(\'<div class=\"btn btn-primary\"><i class=\"fa fa-upload\" aria-hidden=\"true\"></i>&nbsp;Upload file</div>\');
-			$(this).parent().prepend(\'<span>No file chosen</span>\');
-			$(this).fadeTo(0,0);
-			$(this).attr(\'size\', \'30\'); // Use this to adjust width for FireFox.
-			$(this).width($(this).parent().width());
-			$(this).height($(this).parent().height());
-		});
-	},
-	
-	update:function(x){
-		// Update the filename display.
-		var filename = x.val().replace(/^.*\\/g,\'\');
-		if(filename.length > this.maxlength){
-			trim_start = this.maxlength/2-1;
-			trim_end = trim_start+filename.length-this.maxlength+1;
-			filename = filename.substr(0,trim_start)+\'&#8230;\'+filename.substr(trim_end);
-		}
-		if(filename == \'\')
-			filename = \'No file chosen\';
-		x.siblings(\'span\').html(filename);
-	}
+  maxlength:20, 
+    
+  convert:function(){
+    // Convert all file type inputs.
+    $(\'input[type=file]\').each(function(){
+      $(this).wrap(\'<div class=\"file\" />\');
+      $(this).parent().prepend(\'<div class=\"btn btn-primary\"><i class=\"fa fa-upload\" aria-hidden=\"true\"></i>&nbsp;Upload file</div>\');
+      $(this).parent().prepend(\'<span>No file chosen</span>\');
+      $(this).fadeTo(0,0);
+      $(this).attr(\'size\', \'30\'); // Use this to adjust width for FireFox.
+      $(this).width($(this).parent().width());
+      $(this).height($(this).parent().height());
+    });
+  },
+  
+  update:function(x){
+    // Update the filename display.
+    var filename = x.val().replace(/^.*\\/g,\'\');
+    if(filename.length > this.maxlength){
+      trim_start = this.maxlength/2-1;
+      trim_end = trim_start+filename.length-this.maxlength+1;
+      filename = filename.substr(0,trim_start)+\'&#8230;\'+filename.substr(trim_end);
+    }
+    if(filename == \'\')
+      filename = \'No file chosen\';
+    x.siblings(\'span\').html(filename);
+  }
 }
 
 $(document).ready(function(){
-	file.convert();
-	$(\'input[type=file]\').change(function(){
-		file.update($(this));
-	});
+  file.convert();
+  $(\'input[type=file]\').change(function(){
+    file.update($(this));
+  });
 });
     </script>
 
