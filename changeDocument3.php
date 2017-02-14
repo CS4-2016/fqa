@@ -66,7 +66,7 @@ desired effect
   ?>
   <!-- Left side column. contains the logo and sidebar -->
 <?php
-    require_once("side-bar.php");
+    require_once("side-bar-qa.php");
   ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -115,13 +115,9 @@ desired effect
                         <input type="hidden" name="stand" value="'.$stand.'">
                         <input type="hidden" name="category" value="'.$dbtable.'">  
                         
-                          <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+                          
                 
-                     <div class="fileUpload btn btn-primary">
-                   <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;<span>Upload a file...</span>
-                          <input type="file" accept="application/pdf" name="uploadedfile[]" class="uploadFile upload" id="uploadBtn">
-                            
-                            </div>
+                      <input type="file" accept="application/pdf" name="uploadedfile[]" class="uploadFile upload" id="uploadBtn"> 
                           </td>
                         </tr>';    
                     
