@@ -44,7 +44,7 @@ if ($num_rows>0) {
    }else{
        $SQL="INSERT INTO exhibit(exhibits,standards) values ('$input','$standards')"; 
         $ret = mysql_query($SQL);
-	$file = fopen("add-$page-$standards.php","w+");
+  $file = fopen("add-$page-$standards.php","w+");
   fwrite($file, '<?php
   require_once("header.php");
   require_once("dbconn.php");
@@ -421,10 +421,10 @@ else if($position==\'HRD\'){
                           <td>Document available. <a href="changeDocument2.php?exhibits=\'.$oldexhibit.\'&editeval=\'.$cell[$i]["ename"].\'&dept=\'.$_SESSION[\'department\'].\'&pos=\'.$_SESSION[\'position\'].\'&standards=\'.$_GET[\'standards\'].\'">Change Document</a> or <a href="download.php?e=\'.$exhibit.\'&t=\'.$tablename[$x][\'tname\'].\'&ev=\'.$cell[$i]["ename"].\'&dept=\'.$_SESSION[\'department\'].\'&pos=\'.$_SESSION[\'position\'].\'">Download</a>
                           </td>
                         </tr>\';  
-                        $p=$_SESSION[\'position\'];
+/*                        $p=$_SESSION[\'position\'];
                         $dep=$_SESSION[\'department\'];
                         $_SESSION[\'d\']=\'download.php?e=\'.$exhibit.\'&t=\'.$tablename[$x][\'tname\'].\'&ev=\'.$cell[$i][\'ename\'].\'&dept=\'.$dep.\'&pos=\'.$p;
-                        $_SESSION[\'d\'];
+                        $_SESSION[\'d\'];*/
                     
                 }
                 else
@@ -443,6 +443,10 @@ else if($position==\'HRD\'){
                             <input type="hidden" name="e" value="\'.$oldexhibit.\'" />
                             
                             <input type="file" name="uploadedfile[]"  accept="application/pdf">
+                            $p=$_SESSION[\'position\'];
+                            $dep=$_SESSION[\'department\'];
+                            $_SESSION[\'d\']=\'download.php?e=\'.$exhibit.\'&t=\'.$tablename[$x][\'tname\'].\'&ev=\'.$cell[$i][\'ename\'].\'&dept=\'.$dep.\'&pos=\'.$p;
+                            $_SESSION[\'d\'];
                          
                           </td>
                         </tr>
@@ -479,40 +483,40 @@ else if($position==\'HRD\'){
 <script>
     
     var file = {
-	maxlength:20, 
-		
-	convert:function(){
-		// Convert all file type inputs.
-		$(\'input[type=file]\').each(function(){
-			$(this).wrap(\'<div class=\"file\" />\');
-			$(this).parent().prepend(\'<div class=\"btn btn-primary\"><i class=\"fa fa-upload\" aria-hidden=\"true\"></i>&nbsp;Upload file</div>\');
-			$(this).parent().prepend(\'<span>No file chosen</span>\');
-			$(this).fadeTo(0,0);
-			$(this).attr(\'size\', \'30\'); // Use this to adjust width for FireFox.
-			$(this).width($(this).parent().width());
-			$(this).height($(this).parent().height());
-		});
-	},
-	
-	update:function(x){
-		// Update the filename display.
-		var filename = x.val().replace(/^.*\\/g,\'\');
-		if(filename.length > this.maxlength){
-			trim_start = this.maxlength/2-1;
-			trim_end = trim_start+filename.length-this.maxlength+1;
-			filename = filename.substr(0,trim_start)+\'&#8230;\'+filename.substr(trim_end);
-		}
-		if(filename == \'\')
-			filename = \'No file chosen\';
-		x.siblings(\'span\').html(filename);
-	}
+  maxlength:20, 
+    
+  convert:function(){
+    // Convert all file type inputs.
+    $(\'input[type=file]\').each(function(){
+      $(this).wrap(\'<div class=\"file\" />\');
+      $(this).parent().prepend(\'<div class=\"btn btn-primary\"><i class=\"fa fa-upload\" aria-hidden=\"true\"></i>&nbsp;Upload file</div>\');
+      $(this).parent().prepend(\'<span>No file chosen</span>\');
+      $(this).fadeTo(0,0);
+      $(this).attr(\'size\', \'30\'); // Use this to adjust width for FireFox.
+      $(this).width($(this).parent().width());
+      $(this).height($(this).parent().height());
+    });
+  },
+  
+  update:function(x){
+    // Update the filename display.
+    var filename = x.val().replace(/^.*\\/g,\'\');
+    if(filename.length > this.maxlength){
+      trim_start = this.maxlength/2-1;
+      trim_end = trim_start+filename.length-this.maxlength+1;
+      filename = filename.substr(0,trim_start)+\'&#8230;\'+filename.substr(trim_end);
+    }
+    if(filename == \'\')
+      filename = \'No file chosen\';
+    x.siblings(\'span\').html(filename);
+  }
 }
 
 $(document).ready(function(){
-	file.convert();
-	$(\'input[type=file]\').change(function(){
-		file.update($(this));
-	});
+  file.convert();
+  $(\'input[type=file]\').change(function(){
+    file.update($(this));
+  });
 });
     </script>
 
