@@ -321,7 +321,7 @@ else if($position==\'HRD\'){
         
       </h1>
       <ol class="breadcrumb">
-      <?php echo "Standards: <a href=\'view-standards.php\'>".$_GET[\'standards\']."</a>>Options: <a href=\'exhibits.php?standards=".$_GET[\'standards\']."\'>Exhibits</a>>Category: <a href=\'".$_GET[\'exhibits\']."-".$_GET[\'standards\'].".php?exhibits=".$_GET[\'exhibits\']."&standards=".$_GET[\'standards\']."\'>".$$_GET[\'exhibits\']."</a><strong>>Sub-Category: <a href=\'".$column."-".$dbtable."-".$_GET[\'standards\'].".php?ename=".$column."&standards=".$_GET[\'standards\']."&exhibits=".$dbtable."\'>".$column."</a></strong>"; 
+         <?php echo "Standards: <a href=\'standards.php\'>".$_GET[\'standards\']."</a>>Options: <a href=\'qa-crud.php?standards=".$_GET[\'standards\']."\'>Exhibits</a>>Category: <a href=\'add-".$_GET[\'exhibits\']."-".$_GET[\'standards\'].".php?exhibits=".$_GET[\'exhibits\']."&standards=".$_GET[\'standards\']."\'>".$_GET[\'exhibits\']."</a><strong>>Sub-Category: <a href=\'l2_".$column."-".$dbtable."-".$_GET[\'standards\'].".php?ename=".$column."&standards=".$_GET[\'standards\']."&exhibits=".$_GET[\'exhibits\']."\'>".$column."</a></strong>"; 
           ?>
         </ol>
     
@@ -358,10 +358,10 @@ else if($position==\'HRD\'){
 "ename"].\'&dept=\'.$_SESSION[\'department\'].\'&pos=\'.$_SESSION[\'position\'].\'">Download</a>
                           </td>
                         </tr>\';    
-                        $p=$_SESSION[\'position\'];
+/*                        $p=$_SESSION[\'position\'];
                         $dep=$_SESSION[\'department\'];
                         $_SESSION[\'d\']=\'download.php?e=\'.$exhibit.\'&t=\'.$tablename[$x][\'tname\'].\'&ev=\'.$cell[$i][\'ename\'].\'&dept=\'.$dep.\'&pos=\'.$p;
-                        $_SESSION[\'d\'];
+                        $_SESSION[\'d\'];*/
                 }
                 else
                     echo \'
@@ -378,6 +378,10 @@ else if($position==\'HRD\'){
                         <td>
                              
                            <input type="file" name="uploadedfile[]"  accept="application/pdf">
+                        $p=$_SESSION[\'position\'];
+                        $dep=$_SESSION[\'department\'];
+                        $_SESSION[\'d\']=\'download.php?e=\'.$exhibit.\'&t=\'.$tablename[$x][\'tname\'].\'&ev=\'.$cell[$i][\'ename\'].\'&dept=\'.$dep.\'&pos=\'.$p;
+                        $_SESSION[\'d\'];
                             </div>
                           </td>
                     </tr>
