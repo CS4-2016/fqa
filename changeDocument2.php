@@ -152,7 +152,7 @@ else if($position=='HRD'){
                             <input type="hidden" name="t[]" value="'.$tablename[$x]['tname'].'" />
                             <input type="hidden" name="level[]" value="2" />
                             <input type="hidden" name="master-exhibit[]" value="'.$exhibit.'" />
-                            <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+                            
                             <input type="hidden" name="e" value="'.$_GET['exhibits'].'" />
                             <input type="hidden" name="s" value="'.$_GET['standards'].'" />
     
